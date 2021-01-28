@@ -41,8 +41,8 @@ RUN mkdir $APPS_HOME
 WORKDIR $APPS_HOME
 RUN git clone https://github.com/ConesaLab/SQANTI3.git
 WORKDIR $APPS_HOME/$APPNAME
-# Checkout most recent commit at time of building docker image (62415bd on Dec 17, 2020)
-RUN git checkout 62415bd71e1b0c5a59afb324b1a0a121d95320b3
+# Checkout most recent version at time of building docker image (806893d = v1.6 on Dec 17, 2020)
+RUN git checkout 806893d5ef8d26c6177fe3f34a1ad7c25724bf20
 
 # Build SQANTI3 conda environment
 ENV ENV_PREFIX /env/$APPNAME
@@ -56,7 +56,7 @@ RUN wget http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred -P 
     chmod +x $APPS_HOME/$APPNAME/utilities/gtfToGenePred
 
 # Install C-DNA cupcake dependency
-# Checkout most recent commit at time of building docker image (6cefd47 = v19.0.0 on Jan 18, 2021)
+# Checkout most recent version at time of building docker image (6cefd47 = v19.0.0 on Jan 18, 2021)
 
 # need to switch shell from default /sh to /bash so that `source` works
 SHELL ["/bin/bash", "-c"]
