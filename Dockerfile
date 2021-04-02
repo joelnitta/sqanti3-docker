@@ -99,4 +99,37 @@ RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
   echo "$APPS_HOME/$APPNAME/$TOOLNAME \"\$@\"" >> /usr/local/bin/$TOOLNAME  && \
   chmod 755 /usr/local/bin/$TOOLNAME
 
+# Now add new tools and make wrapper for protein_classification.py 
+# First copy new tool from our local forked repo
+COPY src/protein_classification.py $APPS_HOME/$APPNAME/
+ENV TOOLNAME protein_classification.py
+RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
+  echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
+  echo "conda activate /env/$APPNAME" >> /usr/local/bin/$TOOLNAME  && \
+  echo "export PYTHONPATH=$PYTHONPATH:$APPS_HOME/$APPNAME/cDNA_Cupcake/sequence/" >> /usr/local/bin/$TOOLNAME  && \
+  echo "$APPS_HOME/$APPNAME/$TOOLNAME \"\$@\"" >> /usr/local/bin/$TOOLNAME  && \
+  chmod 755 /usr/local/bin/$TOOLNAME
+
+# Now add new tools and make wrapper for protein_classification.py first by
+# First copy new tool from our local forked repo
+COPY src/sample_and_ref_gtf_file_rename_cds_to_exon.py $APPS_HOME/$APPNAME/
+ENV TOOLNAME sample_and_ref_gtf_file_rename_cds_to_exon.py
+RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
+  echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
+  echo "conda activate /env/$APPNAME" >> /usr/local/bin/$TOOLNAME  && \
+  echo "export PYTHONPATH=$PYTHONPATH:$APPS_HOME/$APPNAME/cDNA_Cupcake/sequence/" >> /usr/local/bin/$TOOLNAME  && \
+  echo "$APPS_HOME/$APPNAME/$TOOLNAME \"\$@\"" >> /usr/local/bin/$TOOLNAME  && \
+  chmod 755 /usr/local/bin/$TOOLNAME
+
+# Now add new tools and make wrapper for protein_classification.py first by
+# First copy new tool from our local forked repo
+COPY src/sqanti3_protein.py $APPS_HOME/$APPNAME/
+ENV TOOLNAME sqanti3_protein.py
+RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
+  echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
+  echo "conda activate /env/$APPNAME" >> /usr/local/bin/$TOOLNAME  && \
+  echo "export PYTHONPATH=$PYTHONPATH:$APPS_HOME/$APPNAME/cDNA_Cupcake/sequence/" >> /usr/local/bin/$TOOLNAME  && \
+  echo "$APPS_HOME/$APPNAME/$TOOLNAME \"\$@\"" >> /usr/local/bin/$TOOLNAME  && \
+  chmod 755 /usr/local/bin/$TOOLNAME
+
 WORKDIR /root
