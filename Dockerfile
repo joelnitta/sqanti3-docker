@@ -101,7 +101,9 @@ RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
 
 # Now add new tools and make wrapper for protein_classification.py 
 # First copy new tool from our local forked repo
-COPY src/protein_classification.py $APPS_HOME/$APPNAME/
+COPY src/protein_classification.py $APPS_HOME/$APPNAME
+RUN chmod +x $APPS_HOME/$APPNAME/protein_classification.py
+  
 ENV TOOLNAME protein_classification.py
 RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
   echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
@@ -112,7 +114,9 @@ RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
 
 # Now add new tools and make wrapper for protein_classification.py first by
 # First copy new tool from our local forked repo
-COPY src/sample_and_ref_gtf_file_rename_cds_to_exon.py $APPS_HOME/$APPNAME/
+COPY src/sample_and_ref_gtf_file_rename_cds_to_exon.py $APPS_HOME/$APPNAME
+RUN chmod +x $APPS_HOME/$APPNAME/sample_and_ref_gtf_file_rename_cds_to_exon.py
+  
 ENV TOOLNAME sample_and_ref_gtf_file_rename_cds_to_exon.py
 RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
   echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
@@ -123,7 +127,9 @@ RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
 
 # Now add new tools and make wrapper for protein_classification.py first by
 # First copy new tool from our local forked repo
-COPY src/sqanti3_protein.py $APPS_HOME/$APPNAME/
+COPY src/sqanti3_protein.py $APPS_HOME/$APPNAME
+RUN chmod +x $APPS_HOME/$APPNAME/sqanti3_protein.py 
+
 ENV TOOLNAME sqanti3_protein.py
 RUN echo '#!/bin/bash' >> /usr/local/bin/$TOOLNAME && \
   echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
