@@ -30,23 +30,23 @@ There are now three additional Python scripts in SQANTI3_protein: `protein_class
 
 ```
 # Using the most recent version
-docker run --rm adeslatt/sqanti3-docker:latest protein_classification.py --help
+docker run --rm adeslat/sqanti3-docker:latest protein_classification.py --help
 # Using a specific version of SQANTI3
-docker run --rm adeslatt/sqanti3-docker:1.6.0 protein_classification.py --help
+docker run --rm adeslat/sqanti3-docker:1.6.0 protein_classification.py --help
 ```
 [sample_and_ref_gtf_file_rename_cds_to_exon.py](https://github.com/ConesaLab/SQANTI3#filtering-isoforms-using-sqanti3-output-and-a-pre-defined-rules)
 
 ```
 # Using the most recent version
-docker run --rm adeslatt/sqanti3-docker:latest sample_and_ref_gtf_file_rename_cds_to_exon.py --help
+docker run --rm adeslat/sqanti3-docker:latest sample_and_ref_gtf_file_rename_cds_to_exon.py --help
 # Using a specific version of SQANTI3
-docker run --rm adeslatt/sqanti3-docker:1.6.0 sample_and_ref_gtf_file_rename_cds_to_exon.py --help
+docker run --rm adeslat/sqanti3-docker:1.6.0 sample_and_ref_gtf_file_rename_cds_to_exon.py --help
 ```
 [sqanti3_protein.py](https://github.com/ConesaLab/SQANTI3#filtering-isoforms-using-sqanti3-output-and-a-pre-defined-rules)
 
 ```
 # Using the most recent version
-docker run --rm adeslatt/sqanti3-docker:latest sqanti3_protein.py --help
+docker run --rm adeslat/sqanti3-docker:latest sqanti3_protein.py --help
 # Using a specific version of SQANTI3
-docker run --rm adeslatt/sqanti3-docker:1.6.0 sqanti3_protein.py --help
+docker run --rm adeslat/sqanti3-docker:1.6.0 sqanti3_protein.py --help
 ```
