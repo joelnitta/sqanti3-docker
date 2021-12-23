@@ -3,7 +3,7 @@
 
 FROM python:3
 
-MAINTAINER Joel Nitta joelnitta@gmail.com
+LABEL org.opencontainers.image.authors="Joel Nitta joelnitta@gmail.com"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
