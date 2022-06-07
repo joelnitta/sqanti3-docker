@@ -41,7 +41,7 @@ RUN mkdir $APPS_HOME
 # Download SQANTI3 and build conda env
 WORKDIR $APPS_HOME
 ENV APPNAME SQANTI3
-ENV VERSION 4.2
+ENV VERSION 5.0
 ENV ENV_PREFIX /env/$APPNAME
 RUN wget https://github.com/ConesaLab/$APPNAME/archive/refs/tags/v$VERSION.tar.gz && \
   tar xf v$VERSION.tar.gz && \
@@ -60,12 +60,9 @@ RUN wget https://github.com/Magdoll/cDNA_Cupcake/archive/refs/tags/v$CCVER.tar.g
   rm v$CCVER.tar.gz
 
 # Need to switch shell from default /sh to /bash so that `source` works.
-# Need to install cython in conda env (as of SQANTI v4.2), but may be able 
-# to remove this once it gets fixed https://github.com/ConesaLab/SQANTI3/issues/105
 SHELL ["/bin/bash", "-c"]
 RUN source $CONDA_DIR/etc/profile.d/conda.sh && \
   conda activate $ENV_PREFIX && \
-  conda install -c anaconda cython && \
   cd cDNA_Cupcake-$CCVER && \
   python setup.py build && \
   python setup.py install && \
@@ -77,7 +74,7 @@ SHELL ["/bin/sh", "-c"]
 
 # Make python scripts executable 
 RUN chmod +x $APPS_HOME/$APPNAME-$VERSION/sqanti3_qc.py && \
-  chmod +x $APPS_HOME/$APPNAME-$VERSION/sqanti3_RulesFilter.py
+  chmod +x $APPS_HOME/$APPNAME-$VERSION/sqanti3_filter.py
 
 # Make wrapper for sqanti3_qc.py
 # needs to SQANTI3 conda env and export path to cDNA cupcake
@@ -89,8 +86,8 @@ RUN echo '#!/bin/bash' > /usr/local/bin/$TOOLNAME && \
   echo "$APPS_HOME/$APPNAME-$VERSION/$TOOLNAME \"\$@\"" >> /usr/local/bin/$TOOLNAME && \
   chmod 755 /usr/local/bin/$TOOLNAME
 
-# Make wrapper for sqanti3_RulesFilter.py
-ENV TOOLNAME sqanti3_RulesFilter.py
+# Make wrapper for sqanti3_filter.py
+ENV TOOLNAME sqanti3_filter.py
 RUN echo '#!/bin/bash' > /usr/local/bin/$TOOLNAME && \
   echo "source $CONDA_DIR/etc/profile.d/conda.sh" >> /usr/local/bin/$TOOLNAME && \
   echo "conda activate $ENV_PREFIX" >> /usr/local/bin/$TOOLNAME && \
