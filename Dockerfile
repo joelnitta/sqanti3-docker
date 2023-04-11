@@ -13,7 +13,7 @@ RUN apt-get update
 ### install miniconda ###
 #########################
 
-ENV MINICONDA_VERSION py37_4.10.3
+ENV MINICONDA_VERSION py37_23.1.0-1
 ENV CONDA_DIR /miniconda3
 
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-$MINICONDA_VERSION-Linux-x86_64.sh -O ~/miniconda.sh && \
@@ -22,7 +22,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-$MINICONDA_VERSION-Linux
     rm ~/miniconda.sh
 
 # make non-activate conda commands available
-ENV PATH=$CONDA_DIR/bin:$PATH
+ENV PATH $CONDA_DIR/bin:$PATH
 
 # make conda activate command available from /bin/bash --login shells
 RUN echo ". $CONDA_DIR/etc/profile.d/conda.sh" >> ~/.profile
