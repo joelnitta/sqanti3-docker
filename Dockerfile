@@ -41,7 +41,7 @@ RUN mkdir $APPS_HOME
 # Download SQANTI3 and build conda env
 WORKDIR $APPS_HOME
 ENV APPNAME SQANTI3
-ENV VERSION 5.1
+ENV VERSION 5.1.1
 ENV ENV_PREFIX /env/$APPNAME
 RUN wget https://github.com/ConesaLab/$APPNAME/archive/refs/tags/v$VERSION.tar.gz && \
   tar xf v$VERSION.tar.gz && \
