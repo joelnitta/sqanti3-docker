@@ -41,7 +41,7 @@ RUN mkdir $APPS_HOME
 # Download SQANTI3 and build conda env
 WORKDIR $APPS_HOME
 ENV APPNAME SQANTI3
-ENV VERSION 5.1.1
+ENV VERSION 5.5
 ENV ENV_PREFIX /env/$APPNAME
 RUN wget https://github.com/ConesaLab/$APPNAME/archive/refs/tags/v$VERSION.tar.gz && \
   tar xf v$VERSION.tar.gz && \
@@ -50,24 +50,6 @@ RUN wget https://github.com/ConesaLab/$APPNAME/archive/refs/tags/v$VERSION.tar.g
   conda update --name base --channel defaults conda && \
   conda env create --prefix $ENV_PREFIX --file $APPS_HOME/$APPNAME-$VERSION/$APPNAME.conda_env.yml --force && \
   conda clean --all --yes
-
-# Install C-DNA cupcake dependency in SQANTI3 conda environment
-WORKDIR $APPS_HOME/$APPNAME-$VERSION/
-ENV CCVER 28.0.0
-
-RUN wget https://github.com/Magdoll/cDNA_Cupcake/archive/refs/tags/v$CCVER.tar.gz && \
-  tar xf v$CCVER.tar.gz && \
-  rm v$CCVER.tar.gz
-
-# Need to switch shell from default /sh to /bash so that `source` works.
-SHELL ["/bin/bash", "-c"]
-RUN source $CONDA_DIR/etc/profile.d/conda.sh && \
-  conda activate $ENV_PREFIX && \
-  cd cDNA_Cupcake-$CCVER && \
-  python setup.py build && \
-  python setup.py install && \
-  conda deactivate
-SHELL ["/bin/sh", "-c"]
 
 ### Make shell scripts to run conda apps in conda environment ###
 # e.g., SQANTI3 scripts can be run with `sqanti3_qc.py --help`
